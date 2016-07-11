@@ -1,2 +1,23 @@
-<h1>Hello World</h1>
-<p>See Me in views/static/index.html.erb</p>
+<h2>Sign up for an account!</h2>
+<div><%= flash[:signup] %></div>
+<form method=post action=/signup>
+	<input type="text" placeholder="Full Name" name="user[fullname]"><br>
+	<input type="text" placeholder="Email" name="user[email]"><br>
+	<input type="password" placeholder="Password" name="user[password]"></br>	
+	<input type="submit" value="Sign up">
+</form>
+
+<h2>Login</h2>
+<div><%= flash[:signin] %></div>
+<form method=post action=/signin>
+	<input type="text" placeholder="Email" name="user[email]"><br>
+	<input type="password" placeholder="Password" name="user[password]"></br>
+	<% unless logged_in? %>	
+		<input type="submit" value="Login">
+	<% end %>
+</form>
+
+<form method=post action=/logout>
+	<input type="submit" value="Logout">
+</form>
+
