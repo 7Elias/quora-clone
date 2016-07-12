@@ -1,0 +1,19 @@
+<h1><a href="/questions"><%= @question.title %></a></h1>
+<p>by <a href="/users/<%= @question.user.id%>"><%= @question.user.fullname%></a></p> 
+<p> <%= @question.content %></p>
+
+<br>
+<br>
+<div><%= flash[:answer]%> </div>
+<div>
+<% @answer.each do |a| %>
+<p><%= a.answer%> by <%= a.user.fullname%></p>
+<% end %> 
+</div>
+
+<div>
+<form method="POST" action="/answers/<%=@question.id%>">
+	<textarea style="width:600px; height:150px" placeholder="what do you think" name="answer[answer]"></textarea><br>
+	<input type="submit" value="POST">
+</form>
+</div>	

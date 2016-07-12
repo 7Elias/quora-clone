@@ -1,0 +1,10 @@
+<a href="/users/<%= @user.id %>"><%= @user.fullname%></a>
+
+<h2>My Answers</h2>
+<div>
+	<% @user.answers.each do |a|%>
+	<ul>
+		<li><%= a.answers%></li>
+	</ul>
+<% end %>
+</div>

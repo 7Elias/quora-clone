@@ -2,5 +2,9 @@ require 'byebug'
 require 'sinatra/flash'
 
 get '/' do
-  erb :"static/index"
+	if logged_in? 
+	  redirect '/questions'  
+	else
+ 	  erb :"static/index"
+ 	end
 end
