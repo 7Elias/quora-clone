@@ -8,7 +8,9 @@
 	<ul>
 		<li><a href="/questions/<%= q.id %>"><%= q.title %></a>
 		<%= q.tag %> by 
-		<a href="/users/<%= q.user_id %>"><%= q.user.fullname %></a></li>
+		<a href="/users/<%= q.user_id %>"><%= q.user.fullname %></a> 
+		<%= q.count %> Votes 
+		</li>
 	</ul>
 <% end %>
 </div>

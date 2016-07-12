@@ -1,5 +1,5 @@
 get '/questions' do
-	@question = Question.all
+	@question = Question.all.order(count: :desc)
 	erb :"questions/index"
 end
 
@@ -27,6 +27,23 @@ end
 
 get '/questions/:id' do
 	@question = Question.find(params[:id])
-	@answer = Answer.all
 	erb :"questions/question_details"
+end
+
+put '/questions/:id/upvote' do
+	@question = Question.find(params[:id])
+	@question.increase
+	if @question.save 
+		 flash[:answer] = "thanks for voting"
+	else
+		flash[:answer] = "failed to vote"
+	end
+	redirect "/questions/#{params[:id]}"	
+end
+
+put '/questions/:id/downvote' do
+	@question = Question.find(params[:id])
+	@question.decrease
+	@question.save ? (flash[:answer] = "Thanks for voting") : (flash[:answer] = "failed to vote")
+	redirect "/questions/#{params[:id]}"	
 end

@@ -1,16 +1,49 @@
 <h1><a href="/questions"><%= @question.title %></a></h1>
+
+<!-- form for upvoting question-->
+<form method="POST" action="/questions/<%= @question.id%>/upvote">
+	<input type="hidden" name="_method" value="PUT">
+	<input type="submit" value="Up">	
+</form>
+
+<!-- form for downvoting question-->
+<form method="POST" action="/questions/<%= @question.id%>/downvote">
+	<input type="hidden" name="_method" value="PUT">
+	<input type="submit" value="Down">	
+</form>
+
+<%= @question.count%> Votes
+
 <p>by <a href="/users/<%= @question.user.id%>"><%= @question.user.fullname%></a></p> 
 <p> <%= @question.content %></p>
 
 <br>
 <br>
+
 <div><%= flash[:answer]%> </div>
+
+<!-- to list all the answers -->
 <div>
-<% @answer.each do |a| %>
-<p><%= a.answer%> by <%= a.user.fullname%></p>
+<% @question.answers.order(count: :desc).each do |a| %>
+<p><%= a.answer%> by <%= a.user.fullname%> <%= a.count%> Votes 
+
+<!-- form for upvote answers -->
+<form method="POST" action="/answers/<%=a.id%>/upvote/question/<%= @question.id %>">
+<input type="hidden" name="_method" value="PUT">
+<input type="submit" value="+">
+</form>
+
+<!-- form for downvote answers -->
+<form method="POST" action="/answers/<%=a.id%>/downvote/question/<%= @question.id %>">
+<input type="hidden" name="_method" value="PUT">
+<input type="submit" value="-">
+</form>
+
+</p>
 <% end %> 
 </div>
 
+<!-- form for answering question-->
 <div>
 <form method="POST" action="/answers/<%=@question.id%>">
 	<textarea style="width:600px; height:150px" placeholder="what do you think" name="answer[answer]"></textarea><br>

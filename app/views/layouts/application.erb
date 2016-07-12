@@ -1,8 +1,23 @@
 <html>
 	<head>
 		<title>Sinatra Framework</title>
+		<link rel="stylesheet" href="/css/application.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script type='text/javascript' src='/js/application.js'></script>
 	</head>
 	<body>
+	<% if logged_in?%>
+		<nav>
+			<ul>
+				<li><a href="/questions">All Questions</a></li>
+				<li><a href="/users/<%= current_user.id%>">My profile</a></li>
+					<form method=POST action=/logout>
+						<input type="submit" value="logout">
+					</form>
+			</ul>
+		</nav>
+	<% end %>
 		<%= yield %>
+
 	</body>
 </html>

@@ -6,4 +6,13 @@ class Question < ActiveRecord::Base
 
 	validates :content, :presence => true 
 	validates :title, :presence => true  
+
+	def increase
+		self.count += 1
+	end
+
+	def decrease
+		self.count -= 1
+	end
+
 end

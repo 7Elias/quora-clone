@@ -7,4 +7,16 @@ post '/answers/:id' do
 	redirect "/questions/#{params[:id]}"		
 end
 
+put '/answers/:id_a/upvote/question/:id_q' do
+	@answer = Answer.find(params[:id_a])
+	@answer.increase
+	@answer.save
+	redirect "/questions/#{params[:id_q]}"
+end
 
+put '/answers/:id_a/downvote/question/:id_q' do
+	@answer = Answer.find(params[:id_a])
+	@answer.decrease
+	@answer.save
+	redirect "/questions/#{params[:id_q]}"
+end
