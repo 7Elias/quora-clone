@@ -7,7 +7,8 @@ post '/answers/:id' do
 	redirect "/questions/#{params[:id]}"		
 end
 
-put '/answers/:id_a/upvote/question/:id_q' do 
+# post '/answers/:id_a/upvote/question/:id_q' do
+post '/answers/upvote/:id_a' do 
 	@answer = Answer.find(params[:id_a])
 	unless @answer.upvote.include?(current_user.id)
 		@answer.increase
@@ -19,7 +20,8 @@ put '/answers/:id_a/upvote/question/:id_q' do
 		# redirect "/questions/#{params[:id_q]}"
 end
 
-put '/answers/:id_a/downvote/question/:id_q' do
+# post '/answers/:id_a/downvote/question/:id_q' do
+post '/answers/downvote/:id_a' do
 	@answer = Answer.find(params[:id_a])
 	unless @answer.downvote.include?(current_user.id)
 		@answer.downvote << current_user.id
@@ -42,7 +44,7 @@ delete '/answers/:id_a/delete/question/:id_q' do
 	redirect "/questions/#{params[:id_q]}"
 end
 
-put '/answers/:id_a/edit/question/:id_q' do
+post '/answers/:id_a/edit/question/:id_q' do
 	@answer = Answer.find(params[:id_a])
 		if current_user.id == @answer.user_id
 			@answer.update(answer: params[:answer][:answer])

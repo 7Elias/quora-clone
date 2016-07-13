@@ -9,12 +9,10 @@
 	<% if logged_in?%>
 		<nav>
 			<ul>
-				<li><a href="/questions">All Questions</a></li>
-				<li><a href="/users/<%= current_user.id%>">My profile</a></li>
+				<li><a href="/questions">Questions</a></li>
+				<li><a href="/users/<%= current_user.id%>">profile</a></li>
 				<li><a href="/questions/new">Create question </a></li>
-					<form method=POST action=/logout>
-						<input type="submit" value="logout">
-					</form>
+				<li style="float:right"><a href="/logout">logout</a></li>
 			</ul>
 		</nav>
 	<% end %>

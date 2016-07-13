@@ -7,6 +7,7 @@ source 'https://rubygems.org'
 gem 'byebug'
 gem 'bcrypt'
 gem 'sinatra-flash'
+gem 'will_paginate', '~> 3.1.0'
 
 # Adding Sinatra Drivers
 gem 'sinatra'

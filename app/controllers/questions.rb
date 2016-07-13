@@ -1,5 +1,7 @@
+
 get '/questions' do
 	@question = Question.all.order(count: :desc)
+	# @question = @question.paginate(:page => params[:page], :per_page => 2)
 	erb :"questions/index"
 end
 
