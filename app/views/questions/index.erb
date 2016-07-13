@@ -2,15 +2,14 @@
 <div><%= flash[:signup] %></div>
 <div><%= flash[:signin] %></div>
 
-<a href="/questions/new">Create question </a>
-<div>
-<% @question.each do |q| %>
-	<ul>
-		<li><a href="/questions/<%= q.id %>"><%= q.title %></a>
-		<%= q.tag %> by 
-		<a href="/users/<%= q.user_id %>"><%= q.user.fullname %></a> 
-		<%= q.count %> Votes 
-		</li>
-	</ul>
+<table>
+<% @question.each_with_index do |q, ind| %>
+	<tr>
+		<td><%= ind + 1 %>. </td>
+		<td><a href="/questions/<%= q.id %>"><%= q.title %></a></td>
+		<td><%= q.tag %></td> 
+		<td><a href="/users/<%= q.user_id %>"><%= q.user.fullname %></a></td> 
+		<td><%= q.count %> Votes</td> 
+	</tr>
 <% end %>
-</div>
+</table>

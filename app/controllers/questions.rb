@@ -30,20 +30,26 @@ get '/questions/:id' do
 	erb :"questions/question_details"
 end
 
-put '/questions/:id/upvote' do
+post '/questions/:id/upvote' do
 	@question = Question.find(params[:id])
-	@question.increase
-	if @question.save 
-		 flash[:answer] = "thanks for voting"
-	else
-		flash[:answer] = "failed to vote"
+	unless @question.upvote.include?(current_user.id)
+		@question.increase
+		@question.upvote << current_user.id
+		@question.downvote -= [current_user.id]
+		@question.save
 	end
-	redirect "/questions/#{params[:id]}"	
+	return @question.count.to_json
+	# redirect to "/questions/#{params[:id]}"	
 end
 
-put '/questions/:id/downvote' do
+post '/questions/:id/downvote' do
 	@question = Question.find(params[:id])
-	@question.decrease
-	@question.save ? (flash[:answer] = "Thanks for voting") : (flash[:answer] = "failed to vote")
-	redirect "/questions/#{params[:id]}"	
+	unless @question.downvote.include?(current_user.id)
+		@question.decrease
+		@question.downvote << current_user.id
+		@question.upvote -= [current_user.id]
+		@question.save
+	end
+	return @question.count.to_json
+	# redirect to "/questions/#{params[:id]}"	
 end

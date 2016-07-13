@@ -14,5 +14,4 @@ class Question < ActiveRecord::Base
 	def decrease
 		self.count -= 1
 	end
-
 end

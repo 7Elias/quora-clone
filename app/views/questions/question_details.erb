@@ -1,18 +1,18 @@
 <h1><a href="/questions"><%= @question.title %></a></h1>
 
+<div class="q_vote">
 <!-- form for upvoting question-->
-<form method="POST" action="/questions/<%= @question.id%>/upvote">
-	<input type="hidden" name="_method" value="PUT">
+<form id="q_up" method="POST" action="/questions/<%= @question.id%>/upvote">
 	<input type="submit" value="Up">	
 </form>
 
 <!-- form for downvoting question-->
-<form method="POST" action="/questions/<%= @question.id%>/downvote">
-	<input type="hidden" name="_method" value="PUT">
+<form id="q_down" method="POST" action="/questions/<%= @question.id%>/downvote">
 	<input type="submit" value="Down">	
 </form>
 
-<%= @question.count%> Votes
+<p><%= @question.count%> Votes</p>
+</div>
 
 <p>by <a href="/users/<%= @question.user.id%>"><%= @question.user.fullname%></a></p> 
 <p> <%= @question.content %></p>
@@ -23,30 +23,39 @@
 <div><%= flash[:answer]%> </div>
 
 <!-- to list all the answers -->
-<div>
 <% @question.answers.order(count: :desc).each do |a| %>
-<p><%= a.answer%> by <%= a.user.fullname%> <%= a.count%> Votes 
+<p><%= a.answer%> by <%= a.user.fullname%> <%= a.count%> Votes</p>
+
 
 <!-- form for upvote answers -->
-<form method="POST" action="/answers/<%=a.id%>/upvote/question/<%= @question.id %>">
+<form  method="POST" action="/answers/<%=a.id%>/upvote/question/<%= @question.id %>">
 <input type="hidden" name="_method" value="PUT">
 <input type="submit" value="+">
 </form>
 
 <!-- form for downvote answers -->
-<form method="POST" action="/answers/<%=a.id%>/downvote/question/<%= @question.id %>">
+<form  method="POST" action="/answers/<%=a.id%>/downvote/question/<%= @question.id %>">
 <input type="hidden" name="_method" value="PUT">
 <input type="submit" value="-">
 </form>
 
-</p>
+<form   method="POST" action="/answers/<%=a.id%>/delete/question/<%= @question.id %>">
+<input type="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete">
+</form>
+
+<button type="submit" class="editbutton">Edit Answer</button>
+
+<form id="edit" method="POST" action="/answers/<%=a.id%>/edit/question/<%= @question.id %>">
+<input type="hidden" name="_method" value="PUT">
+<textarea style="width:600px; height:150px" name="answer[answer]"><%= a.answer%> </textarea>
+<input type="submit" value="Edit">
+</form>
+
 <% end %> 
-</div>
 
 <!-- form for answering question-->
-<div>
 <form method="POST" action="/answers/<%=@question.id%>">
 	<textarea style="width:600px; height:150px" placeholder="what do you think" name="answer[answer]"></textarea><br>
 	<input type="submit" value="POST">
 </form>
-</div>	
