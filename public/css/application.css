@@ -27,6 +27,32 @@ nav li a:hover {
 	background-color: #111;
 }
 
+.index_page {
+	border: 1px solid;
+	background-color: #dcecfc;	
+	height: 250px;
+	width: 500px;
+	border-radius: 5px;
+	margin-top: 20%;
+	margin-right: auto;
+	margin-left: auto;
+	/*box-shadow: 0 0 0 1px; */
+}
+
+.signup {
+	float: left;
+		font-family: Helvetica,Arial,sans-serif;
+	font-size: 13px;
+	padding: 2px;
+}
+
+.signin {
+	float: right;
+	font-family: Helvetica,Arial,sans-serif;
+	font-size: 13px;
+	padding: 2px;
+}
+
 .answer_info {
 	list-style-type: none;
 	margin: 5px;
@@ -36,6 +62,8 @@ nav li a:hover {
 
 .answer_info li {
 	float: left;
+	text-align: center;
+	padding: 1px 2px;
 }
 
 .question_info {
@@ -47,8 +75,22 @@ nav li a:hover {
 
 .question_info li {
 	float: left;
+	text-align: center;
+	padding: 2px 5px;
 }
 
 #edit{
 	display:none;
+}
+
+#answer_text {
+	color: brown;
+	font-size: 10px
+	font-family: Helvetica,Arial,sans-serif;
+}
+
+#question_index tr {
+	padding: 5px;
+	display: inline;
+
 }

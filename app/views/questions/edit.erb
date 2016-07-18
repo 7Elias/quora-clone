@@ -1,0 +1,6 @@
+<form method="POST" action="/question/<%= @question.id%>/edit">
+	<input type="text" value="<%= @question.title %>"" name="question[title]"><br>
+	<input type="text" value="<%= @question.tag%>" name="question[tag]"><br>
+	<textarea row="40" col="100" style="width:400px; height:400px;" name="question[content]"><%= @question.content%></textarea><br>
+	<input type="submit" value="POST"> 
+</form>

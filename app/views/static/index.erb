@@ -1,4 +1,6 @@
-<h2>Sign up for an account!</h2>
+<div class="index_page">
+<div class="signup">
+<h2>Sign up</h2>
 <div><%= flash[:signup] %></div>
 <form method=post action=/signup>
 	<input type="text" placeholder="Full Name" name="user[fullname]"><br>
@@ -6,7 +8,9 @@
 	<input type="password" placeholder="Password" name="user[password]"><br>
 	<input type="submit" value="Sign up">
 </form>
+</div>
 
+<div class="signin">
 <h2>Login</h2>
 <div><%= flash[:signin] %></div>
 <form method=post action=/signin>
@@ -16,8 +20,7 @@
 		<input type="submit" value="Login">
 	<% end %>
 </form>
-
-<form method=post action=/logout>
-	<input type="submit" value="Logout">
-</form>
+</div>
+<a href="/questions">Continue Without Logging in</a>
+</div>
 

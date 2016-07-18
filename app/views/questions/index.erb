@@ -1,16 +1,24 @@
 <h1>Questions </h1>
 <div><%= flash[:signup] %></div>
 <div><%= flash[:signin] %></div>
+<%= flash[:post] %>
 
-
-<table>
+<table class="question_index">
 <% @question.each_with_index do |q, ind| %>
+
 	<tr>
-		<td><%= ind + 1 %>. </td>
 		<td><a href="/questions/<%= q.id %>"><%= q.title %></a></td>
-		<td><%= q.tag %></td> 
-		<td><a href="/users/<%= q.user_id %>"><%= q.user.fullname %></a></td> 
-		<td><%= q.count %> Votes</td> 
+	</tr>
+	<tr>
+		<td>
+			<ul class="question_info">
+				<li><a href="/questions/tag/<%= q.tag%>"><%= q.tag %></li>
+				<li><a href="/users/<%= q.user_id %>"><%= q.user.fullname %></a></li> 
+				<li><%= q.count %> Votes</li> 
+			</ul>
+		</td>
 	</tr>
 <% end %>
 </table>
+
+<%= will_paginate @question%>

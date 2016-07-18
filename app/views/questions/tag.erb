@@ -1,0 +1,19 @@
+<h1><%= @tag.first.tag %> </h1>
+
+<table>
+<% @tag.each_with_index do |t, ind| %>
+	<tr>
+		<td><a href="/questions/<%= t.id %>"><%= t.title %></a></td>
+	</tr>
+	<tr>
+		<td>
+			<ul class="question_info">
+				<li><%= t.tag %></li>
+				<li><a href="/users/<%= t.user_id %>"><%= t.user.fullname %></a></li> 
+				<li><%= t.count %> Votes</li> 
+			</ul>
+		</td>
+	</tr>
+
+<% end %>
+</table>

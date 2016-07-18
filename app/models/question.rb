@@ -4,7 +4,6 @@ class Question < ActiveRecord::Base
 	belongs_to :user
 	has_many :answers
 
-	validates :content, :presence => true 
 	validates :title, :presence => true  
 
 	def increase
@@ -14,8 +13,5 @@ class Question < ActiveRecord::Base
 	def decrease
 		self.count -= 1
 	end
-
-
-
 
 end

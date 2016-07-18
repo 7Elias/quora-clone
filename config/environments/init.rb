@@ -7,8 +7,7 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 require 'rubygems'
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 require 'pathname'
-require 'will_paginate'
-require 'will_paginate/active_record'
+
 
 	# database
 require 'pg'
@@ -19,6 +18,8 @@ require 'logger'
 require 'sinatra'
 require "sinatra/reloader" if development?
 require 'sinatra/flash'
+require 'will_paginate'
+require 'will_paginate/active_record'
 
 	# embedded ruby
 require 'erb'
